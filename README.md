@@ -2,6 +2,6 @@
 
 Dépôt du cours d'automates finis - TP
 
-Anas OUKASSOU
+Anas OUKASSOU - Groupe TP4
 
 Aix Marseille Université

@@ -37,6 +37,11 @@ def recognizes(a:'Automaton', word:str)->bool:
   
 ##################
 
+
+"""
+    Takes an Automaton object.
+    Returns the first epsilon transition encountered as a tuple (source, symbol, dest)
+"""
 def getEpsilonState(a):
     for (source, symbol, dest) in a.transitions:
         if symbol == EPSILON:
@@ -44,6 +49,10 @@ def getEpsilonState(a):
     return None
     
 
+"""
+    Takes an Automaton object, a list of states and a symbol.
+    Returns a set of destination states.
+"""
 def getDestination(a, state_list, symbol):
     dest = set()
     for state in state_list:
@@ -51,7 +60,7 @@ def getDestination(a, state_list, symbol):
             dest.update([dest.name for dest in a.statesdict[state].transitions.get(symbol)])
     return dest 
 
-        
+       
 def short_circuit(a, transition):
     source, symbol, middle = transition
     if isAccepting(a, [middle]):
@@ -66,8 +75,12 @@ def short_circuit(a, transition):
                     if not(str(dest) == middle and s == EPSILON):
                         a.add_transition(source, s, str(dest))
     a.remove_transition(source, symbol, middle)
+
         
-                
+"""
+    Takes an Automaton object and a list of states.
+    Returns True if at least one of the states is accepting. Returns False otherwise.
+"""                
 def isAccepting(a, states):
     for state in states:
         if state in a.acceptstates:
